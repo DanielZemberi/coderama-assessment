@@ -52,3 +52,8 @@ export interface IResponseWrapper<T> {
   Search: T;
   totalResults: string;
 }
+
+export interface IGetMovieListParams {
+  page: number;
+  search: string;
+}
