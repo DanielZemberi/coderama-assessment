@@ -26,9 +26,9 @@
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@hookes/*": ["src/hooks/*"],
-      "@lib/*": ["src/lib/*"],
+      "@lib/*": ["src/lib/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "theme"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
