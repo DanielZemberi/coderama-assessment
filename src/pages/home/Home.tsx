@@ -31,10 +31,10 @@ const Home: React.FC = () => {
     });
   };
 
-  const handlePagechange = () => {
+  const handlePagechange = (page: number) => {
     setSearchParams({
       movie: searchParams.get('movie') ?? '',
-      page: String(Number(page) + 1),
+      page: String(page),
     });
     scrollToTop();
   };
