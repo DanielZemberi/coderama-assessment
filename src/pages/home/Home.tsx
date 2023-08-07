@@ -5,6 +5,7 @@ import useMoviesList from '@hookes/query/movie/useMovieList';
 import { useSearchParams } from 'react-router-dom';
 import { scrollToTop } from 'src/utils/scrollToTop';
 import EmptyScreen from './components/EmptyScreen';
+import { ErrorMessage } from '@components/ui';
 
 const INITIAL_PAGE = '1';
 
@@ -13,7 +14,7 @@ const Home: React.FC = () => {
   const search = searchParams.get('movie') ?? '';
   const page = Number(searchParams.get('page')) ?? 1;
 
-  const { data, isFetching } = useMoviesList(
+  const { data, isFetching, isLoading, error } = useMoviesList(
     { search, page },
     {
       enabled: search !== '',
@@ -47,9 +48,10 @@ const Home: React.FC = () => {
           movieList={data.Search}
           totalResults={data.totalResults}
           onNextPage={handlePagechange}
-          isLoading={isFetching}
+          isLoading={isFetching || isLoading}
         />
       ) : null}
+      {error ? <ErrorMessage error={error} /> : null}
     </>
   );
 };
