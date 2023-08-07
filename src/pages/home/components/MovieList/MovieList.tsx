@@ -53,7 +53,7 @@ const MovieList: React.FC<MovieListProps> = ({
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }} marginTop={5}>
         <Pagination
           count={getTotalPagesCount(totalResults)}
-          onChange={(e, page) => onNextPage(page)}
+          onChange={(_, page) => onNextPage(page)}
         />
       </Box>
     </>
