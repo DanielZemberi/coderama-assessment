@@ -1,9 +1,11 @@
 import BaseLayout from '@components/common/BaseLayout';
-import Detail from '@pages/detail/Detail';
-import Error from '@pages/error';
-import Favorite from '@pages/favorite/Favorite';
-import Home from '@pages/home';
+import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+
+const Home = React.lazy(() => import('@pages/home'));
+const Detail = React.lazy(() => import('@pages/detail'));
+const Favorite = React.lazy(() => import('@pages/favorite'));
+const Error = React.lazy(() => import('@pages/error'));
 
 const baseRoutes = createBrowserRouter([
   {

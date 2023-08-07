@@ -5,21 +5,30 @@ import React from 'react';
 import { getMovieDetail } from 'src/services/external/movie/movie.api';
 import { IMovieDetail } from 'src/types/movie';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { ErrorMessage } from '@components/ui';
 
 const Favorite: React.FC = () => {
   const { favoriteMovies } = useAppContext();
   const [favItems, setFavItems] = React.useState<IMovieDetail[]>([]);
   const [parent] = useAutoAnimate();
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<unknown>(null);
 
   const getFavMovieList = React.useCallback(async () => {
-    const res = await Promise.allSettled(favoriteMovies.map(getMovieDetail));
-    setFavItems([]);
-
-    res.map((result) => {
-      if (result.status === 'fulfilled') {
-        setFavItems((prev) => [...prev, result.value.data]);
-      }
-    });
+    try {
+      setIsLoading(true);
+      const res = await Promise.allSettled(favoriteMovies.map(getMovieDetail));
+      setFavItems([]);
+      res.map((result) => {
+        if (result.status === 'fulfilled') {
+          setFavItems((prev) => [...prev, result.value.data]);
+        }
+      });
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   }, [favoriteMovies]);
 
   React.useEffect(() => {
@@ -46,7 +55,9 @@ const Favorite: React.FC = () => {
             </Grid>
           ))}
         </Grid>
-      ) : (
+      ) : null}
+
+      {!favItems.length && !isLoading && !error ? (
         <Box sx={{ background: 'white' }} padding={5}>
           <Typography variant="h5" textAlign="center" paddingBottom={4}>
             Your list is empty
@@ -55,7 +66,9 @@ const Favorite: React.FC = () => {
             Click the star icon to add to your favorite list
           </Typography>
         </Box>
-      )}
+      ) : null}
+
+      {error ? <ErrorMessage error={error} /> : null}
     </>
   );
 };

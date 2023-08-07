@@ -30,5 +30,11 @@
     }
   },
   "include": ["src", "theme"],
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

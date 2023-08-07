@@ -6,6 +6,7 @@ export const NavigationSC = styled(Box)`
   height: 70px;
   position: sticky;
   top: 0;
+  z-index: 10;
   padding: 0 ${({ theme }) => theme.spacing(2)};
 
   display: flex;
