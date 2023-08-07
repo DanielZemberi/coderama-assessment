@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import InfoRow from './components/InfoRow/InfoRow';
+import { getImageUrl } from 'src/utils/getImageUrl';
 
 const Detail: React.FC = () => {
   const params = useParams<{ movieId: string }>();
@@ -15,7 +16,7 @@ const Detail: React.FC = () => {
       {data ? (
         <Box flexDirection={{ xs: 'column', sm: 'row' }} display="flex" gap={4}>
           <Box sx={{ width: '100%', maxWidth: '400px' }} margin="0 auto">
-            <img src={data?.Poster} style={{ width: '100%' }} />
+            <img src={getImageUrl(data?.Poster)} style={{ width: '100%' }} />
           </Box>
           <Box padding={2}>
             <Typography variant="h2">
