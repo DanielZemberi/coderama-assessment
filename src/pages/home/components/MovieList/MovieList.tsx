@@ -39,7 +39,12 @@ const MovieList: React.FC<MovieListProps> = ({
       >
         {movieList.map((movie) => (
           <Grid item xs={4} sm={4} md={4} key={movie.imdbID}>
-            <MovieCard movieData={movie} scrollToView={lastInteractedMovie === movie.imdbID} />
+            <MovieCard
+              title={movie.Title}
+              img={movie.Poster}
+              id={movie.imdbID}
+              scrollToView={lastInteractedMovie === movie.imdbID}
+            />
           </Grid>
         ))}
 

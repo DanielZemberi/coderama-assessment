@@ -12,6 +12,6 @@ export const getMovieList = async (
   return movieApi('/', { params: { s: params.search, page: params.page } });
 };
 
-export const getMovieDetail = async (movieId: string): Promise<IMovieDetail> => {
+export const getMovieDetail = async (movieId: string): Promise<{ data: IMovieDetail }> => {
   return movieApi({ params: { i: movieId } });
 };
