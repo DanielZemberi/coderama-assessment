@@ -17,7 +17,9 @@ const EmptyScreen: React.FC<EmptyScreenProps> = ({ search }) => {
   }
   return (
     <EmptyScreenSC>
-      <Typography variant="h5">No results found</Typography>
+      <Typography variant="h5">
+        No results found for <span style={{ fontWeight: 'bold' }}>{search}</span>
+      </Typography>
       <img src="/assets/png/no-results.png" alt="serach" />
     </EmptyScreenSC>
   );

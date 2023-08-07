@@ -3,7 +3,8 @@ import MOVIE_NAMES from './movie.utils';
 import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 export const getMovieDetailHandler = async (movieId: string) => {
-  return await getMovieDetail(movieId);
+  const res = await getMovieDetail(movieId);
+  return res.data;
 };
 
 type TQueryData = Awaited<ReturnType<typeof getMovieDetailHandler>>;

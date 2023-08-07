@@ -15,7 +15,7 @@ const baseRoutes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'detail/:id',
+        path: 'detail/:movieId',
         element: <Detail />,
       },
       {
