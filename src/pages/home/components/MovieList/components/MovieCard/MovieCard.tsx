@@ -3,6 +3,7 @@ import Link from '@components/ui/Link/Link';
 import useAppContext from '@hookes/app/useAppContext';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
+import { getImageUrl } from 'src/utils/getImageUrl';
 
 interface MovieCardProps {
   title: string;
@@ -15,8 +16,6 @@ interface MovieCardProps {
 const MovieCard: React.FC<MovieCardProps> = ({ title, id, img, scrollToView }) => {
   const { setLastInteractedMovie } = useAppContext();
   const cardAnchorRef = React.createRef<HTMLDivElement>();
-
-  const movieImage = img !== 'N/A' ? img : '/assets/png/no-image-placeholder.png';
 
   const handleInteractionSave = () => {
     setLastInteractedMovie(id);
@@ -34,7 +33,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ title, id, img, scrollToView }) =
   return (
     <Card sx={{ position: 'relative' }}>
       <Link href={`/detail/${id}`} sx={{ textDecoration: 'none' }} onClick={handleInteractionSave}>
-        <CardMedia sx={{ height: 200, backgroundPosition: 'top' }} image={movieImage} />
+        <CardMedia sx={{ height: 200, backgroundPosition: 'top' }} image={getImageUrl(img)} />
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
